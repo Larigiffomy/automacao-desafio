@@ -32,3 +32,16 @@ Cenario:Alterar email
 Dado que eu esteja com meu cadastro aberto
 Quando altero o email
 Entao o email deve ser alterado
+
+@cenario6
+Cenario:Deletar usuario
+Dado que eu ja possuo um usuario cadastrado
+Quando quero excluir o usuario
+Entao o usuario e excluido com sucesso
+
+@cenario7
+Cenario:Deletar usuario que nao existe
+Dado que eu tenho um usuario nao cadastrado
+Quando quero excluir o usuario que nao possui cadastro
+Entao o usuario nao pode ser excluido
+

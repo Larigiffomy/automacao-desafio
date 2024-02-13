@@ -89,3 +89,30 @@ end
 Entao ('o email deve ser alterado')do
 expect(@update_user.code).to eql 200
 end
+
+
+Dado('que eu ja possuo um usuario cadastrado') do
+  @delete_user = ('https://serverest.dev/usuarios/tt8M6SlZVNYjH5Vm') 
+end
+
+Quando('quero excluir o usuario') do
+@delete_user = HTTParty.delete(@delete_user, headers:  {'Content-Type' => 'application/json'})
+end
+
+Entao('o usuario e excluido com sucesso') do
+  expect(@delete_user.code).to eql 200
+end
+
+
+Dado('que eu tenho um usuario nao cadastrado') do
+@delete_user_existing = ('https://serverest.dev/usuarios/tt8M6SlZVNYjH5Vs')
+end
+
+Quando('quero excluir o usuario que nao possui cadastro') do
+@delete_user_existing = HTTParty.delete(@delete_user_existing, headers:  {'Content-Type' => 'application/json'})
+ end
+
+Entao('o usuario nao pode ser excluido') do
+  expect(@delete_user_existing.code).to eql 200
+  expect(@delete_user_existing["message"]).to eql "Nenhum registro excluído"
+end
